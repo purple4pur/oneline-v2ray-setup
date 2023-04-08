@@ -14,7 +14,7 @@ bash <(curl -L https://raw.githubusercontent.com/purple4pur/oneline-v2ray-setup/
 |---|---|
 | `./run.sh` | Install/Update v2ray with default port (10727) |
 | `./run.sh -p 10727` | Install/Update v2ray with custom port |
-| `./run.sh -v` | Summarize current config.json |
+| `./run.sh -v` | Summarize current `config.json` |
 | `./run.sh -u` | Install/update v2ray only |
 | `./run.sh -h` | Get this help menu |
 

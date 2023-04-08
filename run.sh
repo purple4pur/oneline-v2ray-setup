@@ -5,6 +5,15 @@
 # ===================================================================
 
 
+help_menu() {
+    echo "  Usage:"
+    echo "      $0            # Install/Update v2ray with default port (10727)"
+    echo "      $0 -p 10727   # Install/Update v2ray with custom port"
+    echo "      $0 -v         # Summarize current config.json"
+    echo "      $0 -u         # Install/update v2ray only"
+    echo "      $0 -h         # Get this help menu"
+}
+
 check_and_install_jq() {
     if ! command -v jq > /dev/null 2>&1; then
         echo "================================================================"
@@ -114,15 +123,7 @@ port=10727
 while [[ $# -ne 0 ]]; do
     case $1 in
         -h | --help)
-			echo "=============================================================="
-			echo "  Install and setup v2ray service with one command (for VPS)"
-			echo "=============================================================="
-			echo "  Usage:"
-			echo "      $0            # Install/Update v2ray with default port (10727)"
-			echo "      $0 -p 10727   # Install/Update v2ray with custom port"
-			echo "      $0 -v         # Summarize current config.json"
-			echo "      $0 -u         # Install/update v2ray only"
-			echo "      $0 -h         # Get this help menu"
+            help_menu
             exit
             ;;
         -p | --port)
@@ -151,6 +152,7 @@ while [[ $# -ne 0 ]]; do
     shift
 done
 
+check_root
 if is_v2ray_installed; then
     echo "'v2ray' is installed. Update v2ray with '$0 -u'"
 else
