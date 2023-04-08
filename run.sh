@@ -3,10 +3,6 @@
 # ===================================================================
 #   Install and setup v2ray service with one command (for VPS)
 # ===================================================================
-#   Usage:
-#       1.  Copy the link of the [Raw] button
-#       2.  Run in VPS as root:
-#               bash <(curl -L *paste_link*)
 
 
 check_and_install_jq() {
