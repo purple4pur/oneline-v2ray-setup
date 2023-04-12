@@ -53,6 +53,10 @@ install_v2ray() {
     echo "                     Install/Update v2ray"
     echo "================================================================"
     bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+    if ! is_v2ray_installed; then
+        echo "Failed to install 'v2ray'."
+        exit 1
+    fi
 }
 
 summary() {
