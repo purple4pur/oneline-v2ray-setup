@@ -10,6 +10,14 @@ Tested on vultr Debian 11.
 bash < <(curl -L https://raw.githubusercontent.com/purple4pur/oneline-v2ray-setup/main/run.sh)
 ```
 
+Run with arguments:
+
+```
+curl -LO https://raw.githubusercontent.com/purple4pur/oneline-v2ray-setup/main/run.sh
+chmod +x run.sh
+./run.sh -h
+```
+
 | Command | Description |
 |---|---|
 | `./run.sh` | Install/Update v2ray with default port (10727) |
