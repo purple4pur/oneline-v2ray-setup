@@ -21,10 +21,10 @@ chmod +x run.sh
 | Command | Description |
 |---|---|
 | `./run.sh` | Install/Update v2ray with default port (10727) |
-| `./run.sh -p 10727` | Install/Update v2ray with custom port |
+| `./run.sh -p 10727 [-f]` | Install/Update v2ray with custom port [and new UUID] |
 | `./run.sh -v` | Summarize current `config.json` |
 | `./run.sh -u` | Install/update v2ray only |
-| `./run.sh -h` | Get this help menu |
+| `./run.sh -h` | Print this help menu |
 
 ## Reference
 

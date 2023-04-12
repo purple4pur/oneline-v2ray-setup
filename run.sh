@@ -6,12 +6,15 @@
 
 
 help_menu() {
-    echo "  Usage:"
-    echo "      $0            # Install/Update v2ray with default port (10727)"
-    echo "      $0 -p 10727   # Install/Update v2ray with custom port"
-    echo "      $0 -v         # Summarize current config.json"
-    echo "      $0 -u         # Install/update v2ray only"
-    echo "      $0 -h         # Get this help menu"
+    cat << EOF
+Usage: $0 [-p port_number] [-f] [-v] [-u] [-h]
+                    Install/Update v2ray with default port (10727)
+    -p port_number  Install/Update v2ray with custom port
+    -f              Force to generate new UUID
+    -v              Summarize current config.json
+    -u              Install/update v2ray only
+    -h              Print this help menu
+EOF
 }
 
 set_port() {
@@ -78,6 +81,10 @@ write_config_file() {
     else
         uuid=$(v2ray uuid)
     fi
+    if [[ "$FORCE" -eq 1 ]]; then
+        uuid=$(v2ray uuid)
+    fi
+    mkdir -p $(dirname $config_file)
     cat > $config_file << EOF
 {
   "inbounds": [{
@@ -114,7 +121,10 @@ start_v2ray() {
     echo "                          Start v2ray"
     echo "================================================================"
     systemctl enable v2ray
-    systemctl restart v2ray
+    if ! systemctl restart v2ray; then
+        echo "Failed to start v2ray service."
+        exit 1
+    fi
     systemctl status v2ray
 }
 
@@ -124,7 +134,7 @@ read_from_config() {
         port=$(jq .inbounds[0].port $config_file)
         uuid=$(jq .inbounds[0].settings.clients[0].id $config_file | sed 's/"//g')
     else
-        echo "$config_file is not found."
+        echo "'$config_file' is not found."
         exit 1
     fi
 }
@@ -152,6 +162,9 @@ while [[ $# -ne 0 ]]; do
         -u | --update)
             install_v2ray
             exit
+            ;;
+        -f | --force)
+            FORCE=1
             ;;
         *)
             echo "Unrecognized token: $1"
