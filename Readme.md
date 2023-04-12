@@ -7,7 +7,7 @@ Tested on vultr Debian 11.
 ## Usage
 
 ```
-bash <(curl -L https://raw.githubusercontent.com/purple4pur/oneline-v2ray-setup/main/run.sh)
+bash < <(curl -L https://raw.githubusercontent.com/purple4pur/oneline-v2ray-setup/main/run.sh)
 ```
 
 | Command | Description |

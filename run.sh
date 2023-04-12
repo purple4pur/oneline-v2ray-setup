@@ -35,7 +35,7 @@ check_and_install_jq() {
 
 check_root() {
     if ! sudo -nv > /dev/null 2>&1; then
-        echo "Root privileges are required. Please re-run with sudo."
+        echo "Root privileges are required. Please re-run with 'sudo'."
         exit 1
     fi
 }
